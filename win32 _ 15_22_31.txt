@@ -1,0 +1,39 @@
+// 1.  Գրել ծրագիր որը աշխատացնելիս console-ում կարտածի ամբողջ օպերատիվ հիշողությունը (total amount of system memory):
+const os = require('os');
+
+console.log(os.totalmem());// 2. Գրել ծրագիր որ աշխատացնելիս console-ում կարտածի IPv4 IP հասցեն(os.networkInterfaces()):
+const os = require('os');
+const network = os.networkInterfaces();
+
+network['Wi-Fi'].forEach(item => {
+    if (item.family === 'IPv4') {
+        console.log(item.address);
+    }
+})// 3.Գրել ծրագիր որը աշխատացնելիս կստեղծի 8 նիշանոց պատահական թվերից կազմված անուն ունեցող txt ֆայլ և այդ ֆայի մեջ Օպերացիան համակարգի 
+//central processing unit (CPU) քանակը(os.cpus()):
+const os = require('os');
+const fs = require('fs');
+const random = require('random');
+
+const name = random.integer(1e7, 1e8);
+fs.writeFile(name + '.txt', os.cpus().length.toString(), (err) => {
+    if (err) {
+        console.log(err.message);
+        return;
+    }
+    console.log('OK');
+})// 4.Գրել ծրագիր որ աշխատացնելիս  input.txt կկարդա պարունակությունը , որից հետո այդ պարունակության բոլոր բացատները կփոխարին - ներով: 
+//Այնուհետև գծիկներով տեքստ գրել write.txt ֆայլում:
+const fs = require('fs');
+
+fs.readFile('./input.txt', function(err, data) {
+    if (err) {
+        return;
+    }
+    fs.writeFile('write.txt', data.toString().replace(/\s+/g, '-'), (err) => {
+        if (err) {
+            return;
+        }
+        console.log('OK');
+    })
+})
